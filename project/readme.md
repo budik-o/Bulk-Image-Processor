@@ -20,12 +20,13 @@ When building this web app, I first got started by learning how to work with pil
 
 This is my final project for the CS50x course, and while the course itself does not teach Django and instead focuses on Flask, as I was simultaneously doing the CS50w course, which goes in depth with Django, I decided to use this framework for my web app. I realize that for such a small project like this one, using Flask could have been easier, but I simply chose the option I was more comfortable with. 
 
-Resources used for building this project:
--CS50x (basic html, css, JavaScript, bootstrap, Python)
--CS50w (working with Django)
--the Pillow library's handbook: https://pillow.readthedocs.io/en/stable/handbook/index.html
--The pilgram library's documentation: https://pypi.org/project/pilgram/
--The zipfile library's documentation: https://docs.python.org/3/library/zipfile.html
--ChatGPT 3.5 - debugging, fixing issues, understanding error messages
--https://www.youtube.com/watch?v=Ws7Wy5EHaXY (uploading multiple files to a website, making things look pretty)
--several other web tutorials/youtube videos, mostly related to uploading files, displaying them and modifying them
+## Resources used for building this project:
+
+- CS50x (basic html, css, JavaScript, bootstrap, Python)
+- CS50w (working with Django)
+- The Pillow library's handbook: [Pillow Handbook](https://pillow.readthedocs.io/en/stable/handbook/index.html)
+- The pilgram library's documentation: [pilgram Documentation](https://pypi.org/project/pilgram/)
+- The zipfile library's documentation: [zipfile Documentation](https://docs.python.org/3/library/zipfile.html)
+- ChatGPT 3.5 - debugging, fixing issues, understanding error messages
+- [YouTube tutorial](https://www.youtube.com/watch?v=Ws7Wy5EHaXY) (uploading multiple files to a website, making things look pretty)
+- Several other web tutorials/youtube videos, mostly related to uploading files, displaying them, and modifying them
