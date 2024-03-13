@@ -1,0 +1,56 @@
+{% extends "layout.html" %}
+
+{% block title %}Download Image{% endblock %}
+
+{% block body %}
+    <style>
+        .image-thumbnail {
+            object-fit: cover;
+            height: 400px;
+        }
+        .center-buttons {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .image-preview {
+            margin-top: 5px; 
+            margin-bottom: -10px; 
+            text-align: center
+        }
+    </style>
+    <div class = "m-5">
+        <div class = "container">
+            <div class = "row">
+                
+                <h1 class = "text-center">Download Results</h1>
+
+                <div class = "col-md-12 center-buttons">
+                    <form method = "post" action = "{% url 'result' %}" class = "mb-4">
+                        {% csrf_token %}
+                        <a href = "{% url 'home' %}" class = "btn btn-success">Adjust More Images</a>
+                        <button type = "submit" name = "download_all" class = "btn btn-primary me-2">Download All</button> 
+                    </form>
+                </div>
+
+                {% for image in images %}
+
+                    <div class = "col-md-4">
+                        <div class = "card my-2" style = "width: 100%">                    
+                            <img src = "{{ image.image.url }}" class = "card-img-top image-thumbnail" alt = "modified_image_{{ forloop.counter }}">
+                            <div class = "image-preview">Image Preview</div>   
+                            <div class = "card-body">
+                                <a href = "{{ image.image.url }}" download = "modified_{{ image.filename }}.{{ image.file_extension }}" class = "btn btn-outline-dark btn-sm m-1 center-buttons" style = "font-size: 20px;">Download Image</a>
+                            </div>
+                        </div>
+                    </div>
+
+                {% endfor %}
+
+            </div>
+        </div>        
+    </div>
+
+
+
+{% endblock %}

@@ -1,0 +1,102 @@
+{% extends "layout.html" %}
+
+{% block body %}
+
+    <div class = "container">
+        <h1 class = "mt-5 text-center">Bulk Image Modifier</h1>
+
+        <form method = "post" enctype = "multipart/form-data">
+            {% csrf_token %}
+            
+            <div class = "card mt-4">
+                <div class = "card-body">
+                    
+                    <div class = "mb-3">
+                        <label for = "formFile" class = "form-label">Upload Files Here</label>
+                        {{ image_form }}
+                    </div>
+
+                    <div class = "mb-3">
+                        <label for = "id_filter_type" class = "form-label">Choose a filter:</label>
+                        {{ modification_form.filter_type }}
+                    </div>
+
+                    <div class = "mb-3">
+                        <label for = "id_adjustment_type" class = "form-label">Choose an adjustment:</label>
+                        {{ modification_form.adjustment_type }}
+                    </div>
+
+                    <div class = "mb-3">
+                        <label for = "id_factor" class = "form-label">Choose factor for adjustment:</label>
+                        <div class = "d-flex align-items-center">
+                            <span class = "me-2"><span id = "factorPercentage"></span></span>
+                            {{ modification_form.factor }}
+                        </div>           
+                    </div>
+
+                    <button type = "submit" class = "btn btn-primary">Modify Images</button>
+                </div>
+            </div>
+        </form>
+
+        {% if upload_error %}
+            <div class="alert alert-danger" role="alert" style = "font-size: 20px">
+                <strong style = "font-size: 20px">Error: </strong>{{ upload_error }}
+            </div>
+        {% endif %}
+
+        {% if messages %}
+
+            <div class = "alert alert-danger" role = "alert" style = "font-size: 20px">
+                <strong style = "font-size: 25px">Error: </strong>Upload a valid image file. Supported formats: jpg, jpeg, png, webp, gif.
+                <ul>
+                    {% for message in messages %}
+                        <li style = "font-size: 15px">{% if message.tags %} class = "{{ message.tags }}"{% endif %}>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            
+        {% endif %}
+
+    </div>
+
+    <script src = "https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+    <script>
+        // toggle factor field, factor label & factor percentage off if no adjustment is selected
+        function toggleFactor() {
+            var adjustmentType = $("#id_adjustment_type").val();
+            var factorLabel = $("label[for = 'id_factor']");
+            var factorField = $("#id_factor");
+            var factorPercentage = $("#factorPercentage");
+
+            if (adjustmentType === "") {      
+                factorLabel.hide();
+                factorField.hide();
+                factorPercentage.hide();
+            } 
+            else {
+                factorLabel.show();
+                factorField.show();
+                factorPercentage.show();
+                updatePercentage();
+            }
+        }
+        
+        // update % factor value dynamically
+        function updatePercentage() {
+            var factorValue = $("#id_factor").val();
+            $("#factorPercentage").text((factorValue * 100).toFixed(2) + "%");
+        }
+
+        // adjustments on page load
+        $(document).ready(function () {  
+            toggleFactor();
+
+            $("#id_adjustment_type").change(toggleFactor);
+            $("#id_factor").val(1.0);
+            $("#id_factor").on("input", updatePercentage).trigger("input");
+        });
+    </script>
+
+{% endblock %}
