@@ -1,5 +1,5 @@
 Bulk Image Modifier
-#### Video Demo:  <URL HERE>
+#### Video Demo:  <URL HERE>https://youtu.be/S0EuK3WRT80
 #### Description: Django-based web application for modifying (filters & adjustments) images in bulk using Pillow and pilgram. Final Project for CS50x.
 
 For my final project in CS50x, I decided to make a Django web application that allows the user to upload images, apply filters and/or other adjustments to them and download the altered images, either one-by-one or all at once in a .zip file. 
